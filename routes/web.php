@@ -9,6 +9,8 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +64,20 @@ Route::put('/appointment', [AppointmentController::class, 'verify'])->name('appo
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
 Route::put('/profile/edit', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware(['auth', 'adminOnly']);
+Route::post('/products', [ProductController::class, 'store'])->name('products.store')->middleware(['auth', 'adminOnly']);
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit')->middleware(['auth', 'adminOnly']);
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show')->middleware('auth');
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update')->middleware(['auth', 'adminOnly']);
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware(['auth', 'adminOnly']);
+
+Route::middleware(['auth:patient'])->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/orders/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+});

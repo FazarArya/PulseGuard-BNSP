@@ -83,7 +83,24 @@
                     <span class="flex-1 ms-3 whitespace-nowrap sm:hidden text-black" id="textSidebarMini">Your Appointments</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('orders.index') }}" class="flex justify-center p-2 text-black rounded-lg hover:bg-red-600 group {{ Str::contains(Route::currentRouteName(), 'orders') ? 'bg-red-600' : '' }}" id="navLink">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-black transition duration-75 group-hover:text-white {{ Str::contains(Route::currentRouteName(), 'orders') ? 'text-white' : '' }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zM5 4a2 2 0 0 0-2-2H1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 16a2 2 0 0 0-2-2H1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm14 0a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zM12 10a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2zM16 16v-2a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2z"/>
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap sm:hidden text-black" id="textSidebarMini">Special Medicine</span>
+                </a>
+            </li>
             @if (Auth::guard('doctors')->check() || Auth::guard('admins')->check())
+            <li>
+                <a href="{{ route('products.index') }}" class="flex justify-center p-2 text-black rounded-lg hover:bg-red-600 group {{ Str::contains(Route::currentRouteName(), 'products') ? 'bg-red-600' : '' }}" id="navLink">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-black transition duration-75 group-hover:text-white {{ Str::contains(Route::currentRouteName(), 'products') ? 'text-white' : '' }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18v18H3z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 9h18M9 21V9" />
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap sm:hidden text-black" id="textSidebarMini">Your Products</span>
+                </a>
+            </li>
             <li>
                 <a href="{{ route('question') }}" class="flex justify-center p-2 text-black rounded-lg hover:bg-red-600 group {{ Str::contains(Route::currentRouteName(), 'question') ? 'bg-red-600' : '' }}" id="navLink">
                     <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-black transition duration-75 group-hover:text-white {{ Str::contains(Route::currentRouteName(), 'question') ? 'text-white' : '' }}" viewBox="0 0 32 32">

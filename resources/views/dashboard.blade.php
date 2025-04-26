@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="p-4 sm:ml-20">
     <div class="p-4">
         @if (Auth::guard('doctors')->check())

@@ -46,9 +46,9 @@
             <div id="tab-1-content" class="tab-content-item show">
                 <div class="tab-1-content-inner">
                     <div class="img-place">
-                        <img class="image-one" src="https://myocardial.telekardiologi.com/img/about/3.png"
+                        <img class="image-one" src="https://blueskymedicalclinic.com/img/about/2.png"
                             alt="" />
-                        <img class="image-two" src="https://myocardial.telekardiologi.com/img/about/2.png"
+                        <img class="image-two" src="https://targetmktdigital.com.mx/wp-content/uploads/2023/06/istockphoto-153032615-612x612-1.jpg"
                             alt="" />
                     </div>
                     <div>

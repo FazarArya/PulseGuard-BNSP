@@ -136,6 +136,24 @@ class AssessmentController extends Controller
         return view('assessment.notes', compact('doctors'));
     }
 
+    public function evaluateStatus($assessmentId)
+    {
+        // Mengambil semua jawaban assessment berdasarkan assessment_id
+        $answers = AssessmentQuestion::where('assessment_id', $assessmentId)->pluck('answer');
+
+        $threshold = 7;
+        $healthyAnswers = $answers->filter(function($answer) {
+            return $answer == 1; 
+        })->count();
+
+        // Tentukan status berdasarkan jawaban
+        if ($healthyAnswers >= $threshold) {
+            return 'Healthy';
+        } else {
+            return 'Unhealthy';
+        }
+    }
+
     public function finish(Request $request)
     {
         $request->validate(
@@ -152,23 +170,23 @@ class AssessmentController extends Controller
         })->first();
         
         if ($assessment){
-            if ($request->notes){
-                Assessment::findOrFail($assessment->id)->update([
-                    'is_finished' => 1,
-                    'notes' => $request->notes
-                ]);
-            }
-            else{
-                Assessment::findOrFail($assessment->id)->update([
-                    'is_finished' => 1
-                ]);
-            }
-            
+            // Evaluasi status healthy/unhealthy berdasarkan jawaban pasien
+            $status = $this->evaluateStatus($assessment->id);
+
+            // Update assessment dengan status yang baru
+            Assessment::findOrFail($assessment->id)->update([
+                'is_finished' => 1,
+                'notes' => $request->notes ?? null,  // Jika ada notes
+                'status' => $status // Menyimpan status healthy/unhealthy
+            ]);
+
+            // Relasi assessment dengan dokter
             AssessmentDoctor::create([
                 'assessment_id' => $assessment->id,
                 'doctor_id' => $request->doctor
             ]);
 
+            // Membuat appointment baru
             $appointment = Appointment::create([
                 'datetime' => $request->datetime,
                 'status' => 'waiting'
@@ -187,6 +205,7 @@ class AssessmentController extends Controller
 
         return redirect('assessment');
     }
+
 
     public function destroy(Request $request)
     {
