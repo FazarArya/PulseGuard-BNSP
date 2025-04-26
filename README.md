@@ -1,7 +1,7 @@
 # PulseGuard
 
 <p align="center">
-  <img src="public/img/logo1.svg" width="300" alt="PulseGuard Logo">
+  <img src="public/img/logo-footer.png" width="300" alt="PulseGuard Logo">
 </p>
 
 ## Empowering Communities with Cardio Care
@@ -95,7 +95,7 @@ database/seeders/UserSeeder.php
 
 ---
 
-### Catatan
+### Notes
 Aplikasi ini dibuat dengan fokus pada **SDG 3.4** untuk **menurunkan angka kematian yang disebabkan oleh penyakit kardiovaskular, kanker, diabetes, dan penyakit pernapasan kronis** pada tahun 2030. Website ini juga digunakan untuk **sertifikasi BNSP Web Development** dan untuk memenuhi Tugas Besar pada mata kuliah **Web Application Development (WAD)**.
 
 ---
